@@ -118,12 +118,12 @@ export default function Product() {
   //   stock,
   // ]);
 
-  // useEffect(() => {
-  // receiveProducts().then((data) => {
-  //   console.log("this  is useEffect data", data);
-  //   setProducts(data.hits);
-  //   setSearchProducts(data.hits);
-  // });
+  useEffect(() => {
+  receiveProducts().then((data) => {
+    console.log("this  is useEffect data", data);
+    setProducts(data.hits);
+    setSearchProducts(data.hits);
+  });
 
   //   algoliaSearchProducts().then((data) => {
   //     console.log("this  is useEffect data", data);
@@ -131,7 +131,7 @@ export default function Product() {
   //     setSearchProducts(data.hits);
   //     setLoading(false);
   //   });
-  // }, []);
+  }, []);
 
   useEffect(() => {
     receiveProducts().then((data) => {
@@ -188,6 +188,7 @@ export default function Product() {
 
   const TextFielData = (e) => {
     setSearchValue(e.target.value);
+    setLoading(true);
     // let OriginalProudcts = products;
 
     // if (e.target.value.length > 0) {
@@ -202,19 +203,28 @@ export default function Product() {
 
   useEffect(() => {
     if (searchValue.length > 0 && searchValue !== "") {
-      setIsSearched(true);
+      setLoading(true)
+
       receiveProductsSearch(searchValue).then((data) => {
         setSearchProducts(data.hits);
+      setIsSearched(true);
+
+    setLoading(false)
+
       });
     } else if (searchValue === "") {
       setIsSearched(false);
-      receiveProducts().then((data) => {
-        setProducts(data?.data?.products?.edges);
-        setSearchProducts(data?.data?.products?.edges);
+    setLoading(true)
+
+      // receiveProducts().then((data) => {
+
+        setSearchProducts(products);
         setLoading(false);
-      });
+      setIsSearched(false);
+
+      // });
     }
-  }, [searchValue]);
+  }, [searchValue, searchValue?.length===0]);
 
   useEffect(() => {
     getAllCategories().then((data) => {

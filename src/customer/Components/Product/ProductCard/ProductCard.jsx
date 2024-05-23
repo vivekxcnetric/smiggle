@@ -44,16 +44,22 @@ const ProductCard = ({ product, isSearched, length }) => {
         <div>
           <p className="font-bold opacity-60">{brand}</p>
           {/* <p className="">${product?.title || product?.node?.title}  </p> */}
+          {console.log(isSearched, length)}
 
-          {/* {!isSearched && length <= 0
+          {/* {!isSearched || length === 0
+
+
+
             ? `${product?.node?.title}`
             : `${product?.title} - ${product?.variant_title}`} */}
+            {product?.node?.title || `${product?.title} - ${product?.variant_title}` }
 
-          {isSearched
+          {/* {isSearched
             ? `${product?.title} - ${product?.variant_title}`
             : length === 0
             ? `${product?.node?.title}`
-            : `${product?.title} - ${product?.variant_title}`}
+            : `${product?.title} - ${product?.variant_title}`} */}
+            
 
           <p className="font-semibold opacity-50">{color}</p>
         </div>
