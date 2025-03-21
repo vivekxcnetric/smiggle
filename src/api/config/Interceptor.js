@@ -4,7 +4,7 @@ import LocalStorageService from "../../storage/LocalStorageService";
 // console.log("process.env.REACT_APP_PUBLIC_URL,", process.env);
 // baseURL: "http://49.206.253.146:1773/",
 const instance = axios.create({
-  baseURL: "http://49.206.253.146:1770",
+  baseURL: "http://49.205.192.156:1770",
 });
 const localStorageService = LocalStorageService.getService();
 const userAccessToken = localStorageService.getUserAuthAccessToken();
